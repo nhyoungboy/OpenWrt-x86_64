@@ -10,6 +10,7 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 cat >> feeds.conf.default <<EOF
-src-git kenzo https://github.com/kenzok8/openwrt-packages
-src-git small https://github.com/kenzok8/small
+# src-git kenzo https://github.com/kenzok8/openwrt-packages
+src-git small https://github.com/kenzok8/small-package
+src-git kenzok8 https://github.com/kenzok8/small
 EOF
