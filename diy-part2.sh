@@ -14,6 +14,7 @@ rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftabl
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.81.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.81.1/g' package/base-files/luci2/bin/config_generate
 
 # rm -rf feeds/luci/themes/luci-theme-argon
 # git clone -b https://github.com/haiibo/openwrt-packages/tree/master/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
@@ -29,8 +30,5 @@ date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 sed -i "s/${orig_version}/R${date_version} by Leran/g" package/lean/default-settings/files/zzz-default-settings
 
-# 修改连接数数
-sed -i 's/net.netfilter.nf_conntrack_max=.*/net.netfilter.nf_conntrack_max=250000/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
-
-#修正连接数
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=250000' package/base-files/files/etc/sysctl.conf
+# 最大连接数修改为65535
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
