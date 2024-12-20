@@ -10,14 +10,18 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
+# rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.81.1/g' package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.81.1/g' package/base-files/luci2/bin/config_generate
 
-# rm -rf feeds/luci/themes/luci-theme-argon
-# git clone -b https://github.com/haiibo/openwrt-packages/tree/master/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+# 清理旧包
+rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon-mod
+# 修改默认主题
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+
 
 # x86 型号只显示 CPU 型号
 sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
