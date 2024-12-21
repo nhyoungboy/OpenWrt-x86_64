@@ -16,11 +16,6 @@
 sed -i 's/192.168.1.1/192.168.81.1/g' package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.81.1/g' package/base-files/luci2/bin/config_generate
 
-# 清理旧包
-rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/themes/luci-theme-argon-mod
-# 修改默认主题
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 
 # x86 型号只显示 CPU 型号
